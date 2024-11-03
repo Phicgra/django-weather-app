@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Weather App</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Get the Current Weather</h2>
+                <form id="weatherForm" method="POST">
+                    {% csrf_token %}
+                    <input type="text" id="cityInput" placeholder="Enter city name" name="city" required>
+                    <button type="submit">Get Weather</button>
+                    {% if country_code %}
+                        <div class="weather-details">
+                            <p>Weather Information For {{city}}</p>
+                            <p>Country Code: {{country_code}}</p>
+                            <p>City Temperature:{{temp}}</p>
+                            <p>City Pressure: {{pressure}}</p>
+                            <p>City Hunidity: {{humidity}}</p>                        
+                            <p>City rain: {{rain}}</p>      
+                            <!-- <p>Clouds: {{clouds}}</p>                         -->
+                        </div>
+                    {% endif %}
+                </form>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; Techturant - 2024 Weather App</p>
+        </footer>
+    </div>
+    <!-- <script src="script.js"></script> -->
+</body>
+</html>
